@@ -28,8 +28,8 @@ void Player::set_ships_manual() {
     }
 }
 
-bool Player::shot_opponent(int x, int y) {
-    return board.shot(x, y);
+bool Player::shot_opponent(Board& opponent_board, int x, int y) {
+    return opponent_board.shot(x, y);
 }
 
 bool Player::all_ships_destroyed() {
