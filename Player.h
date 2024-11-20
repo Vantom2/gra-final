@@ -1,5 +1,5 @@
-#ifndef GRACZ_H
-#define GRACZ_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <string>
 #include "Board.h"
@@ -11,7 +11,7 @@ public:
     
     Player(std::string name);
     void set_ships_manual(); 
-    bool shot_opponent(int x, int y);
+    bool shot_opponent(Board& opponent_board, int x, int y);
     bool all_ships_destroyed();
 };
 
