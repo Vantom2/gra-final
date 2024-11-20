@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef GRACZ_H
+#define GRACZ_H
 
 #include <string>
 #include "Board.h"
