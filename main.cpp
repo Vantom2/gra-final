@@ -13,7 +13,7 @@ void clear_screan() {
 }
 
 void stop_round() {
-    cout << "Naciśnij Enter, aby przekazać turę przeciwnikowi...";
+    cout << "Nacisnij Enter, aby przekazac ture przeciwnikowi...";
     cin.ignore(); // Oczekiwanie na Enter
     cin.get();    // Kolejne oczekiwanie, gdy jest buforowane wejście
 }
@@ -27,23 +27,24 @@ void set_player_ship(Player& player) {
 
 // Funkcja obsługi tury gracza
 bool t_round(Player& akt_player, Player& opponent, int& round) {
-    cout << akt_player.name << " - Twoja turę!\n";
-    akt_player.board.show_board(false);
+    cout << akt_player.name << " - Twoja tura!\n";
+    akt_player.board.show_board(false); // Plansza statków
+    akt_player.shot_board.show_board(true); // Plansza strzałów
 
     int x, y;
     bool correct = false;
     while (!correct) {
-        cout << "Podaj współrzędne do strzału (x y): ";
+        cout << "Podaj wspolrzedne do strzalu (x y): ";
         cin >> x >> y;
 
         if (x >= 0 && x < 10 && y >= 0 && y < 10) {
             correct = true;
             if (akt_player.shot_opponent(opponent.board, x, y)) {
                 if (opponent.all_ships_destroyed()) {
-                    cout << "Gratulacje! " << akt_player.name << " wygrał!\n";
+                    cout << "Gratulacje! " << akt_player.name << " wygral!\n";
                     return true; // Koniec gry
                 } else {
-                    cout << "Masz kolejną turę!\n";
+                    cout << "Masz kolejną ture!\n";
                 }
             } else {
                 round = (round == 1) ? 2 : 1;
@@ -51,8 +52,9 @@ bool t_round(Player& akt_player, Player& opponent, int& round) {
                 clear_screan();
             }
         } else {
-            cout << "Niepoprawne współrzędne! Wprowadź liczby od 0 do 9.\n";
+            cout << "Niepoprawne wspolrzedne! Wprowadz liczby od 0 do 9.\n";
         }
+    
     }
 
     return false; // Gra trwa dalej
@@ -83,7 +85,7 @@ bool game_play(int& player1_wins, int& player2_wins) {
         player2_wins++;
     }
 
-    cout << "Czy chcesz zagrać ponownie? (T/N): ";
+    cout << "Czy chcesz zagrac ponownie? (T/N): ";
     char choice;
     cin >> choice;
     return !(choice == 'N' || choice == 'n'); // Zwraca true, jeśli player chce kontynuować
@@ -102,6 +104,6 @@ int main() {
         cout << "Player 2: " << player2_wins << " wygranych\n";
     }
 
-    cout << "Dziękujemy za grę!" << endl;
+    cout << "Dziekujemy za gre!" << endl;
     return 0;
 }
