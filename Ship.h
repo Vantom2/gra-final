@@ -2,11 +2,11 @@
 #define SHIP_H
 
 #include <vector>
-
+using namespace std;
 class Ship {
 public:
     int LENGHT;
-    std::vector<std::pair<int, int>> field; // Lista pól, które zajmuje statek
+    vector<pair<int, int>> field; // Lista pól, które zajmuje statek
     
     Ship(int LENGHT);
     void add_field(int x, int y);
