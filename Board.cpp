@@ -10,22 +10,22 @@ Board::Board() {
 }
 
 void Board::show_board(bool opponent_view) {
-    std::cout << "   ";
+    cout << "   ";
     for (int i = 0; i < 10; i++) {
-        std::cout << i << " ";
+        cout << i << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     for (int i = 0; i < 10; i++) {
-        std::cout << i << "  ";
+        cout << i << "  ";
         for (int j = 0; j < 10; j++) {
             if (opponent_view && board[i][j] == 'O') {
-                std::cout << "~ ";
+                cout << "~ ";
             } else {
-                std::cout << board[i][j] << " ";
+                cout << board[i][j] << " ";
             }
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 bool Board::check_view(int x, int y, int LENGHT, char ORIENTATION) {
@@ -83,14 +83,14 @@ bool Board::set_ship(int x, int y, int LENGHT, char ORIENTATION) {
 bool Board::shot(int x, int y) {
     if (board[y][x] == 'O') {
         board[y][x] = 'X';
-        std::cout << "Trafiony!\n";
+        cout << "Trafiony!\n";
         return true;
     } else if (board[y][x] == '~') {
         board[y][x] = 'P';
-        std::cout << "Pudło!\n";
+        cout << "Pudlo!\n";
         return false;
     } else {
-        std::cout << "To pole zostało już trafione! Tracisz turę.\n";
+        cout << "To pole zostało juz trafione! Tracisz turę.\n";
         return false;
     }
 }
