@@ -8,7 +8,7 @@ class Player {
 public:
     std::string name;
     Board board;
-    
+    Board shot_board;
     Player(std::string name);
     void set_ships_manual(); 
     bool shot_opponent(Board& opponent_board, int x, int y);
