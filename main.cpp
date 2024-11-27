@@ -21,12 +21,17 @@ void stop_round() {
 // Funkcja ustawiania statków dla gracza
 void set_player_ship(Player& player) {
     cout << player.name << " - ustaw swoje statki.\n";
+    player.board.show_board(false); // Wyświetl planszę gracza przed ustawieniem statków
     player.set_ships_manual();
     clear_screan();
 }
 
 // Funkcja obsługi tury gracza
 bool t_round(Player& akt_player, Player& opponent, int& round) {
+    cout << "Graczu jesli jestes gotowy kliknij enter " << endl;
+    getchar();
+    getchar();
+    system ("cls"); 
     cout << akt_player.name << " - Twoja tura!\n";
     akt_player.board.show_board(false); // Plansza statków
     akt_player.shot_board.show_board(true); // Plansza strzałów
@@ -54,7 +59,6 @@ bool t_round(Player& akt_player, Player& opponent, int& round) {
         } else {
             cout << "Niepoprawne wspolrzedne! Wprowadz liczby od 0 do 9.\n";
         }
-    
     }
 
     return false; // Gra trwa dalej
@@ -96,6 +100,9 @@ int main() {
     int player1_wins = 0;
     int player2_wins = 0;
     bool play_again = true;
+
+   
+    
 
     while (play_again) {
         play_again = game_play(player1_wins, player2_wins);
