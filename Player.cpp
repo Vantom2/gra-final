@@ -13,21 +13,35 @@ void Player::set_ships_manual() {
         while (!set) {
             int x, y;
             char ORIENTATION;
-            cout << "Ustaw statek o dlugosci " << ships[i] << " (wpisz wspolrzedne x, y oraz orientacje [POZIOMO(H)/PIONOWO(V)]): ";
-            cin >> x >> y >> ORIENTATION;
+            // Dla statków jedno masztowych, automatycznie ustawiamy orientację w pionie
+            if (ships[i] == 1) {
+                ORIENTATION = 'V'; // Ustawiamy w pionie
+                cout << "Ustaw statek o dlugosci " << ships[i] << " (wspolrzedne x, y): ";
+                cin >> x >> y;
 
-            
-            if (board.set_ship(x, y, ships[i], ORIENTATION)) {
-                set = true;
-                cout << "Statek ustawiony pomyslnie!\n";
-                board.show_board(false);  
+                if (board.set_ship(x, y, ships[i], ORIENTATION)) {
+                    set = true;
+                    cout << "Statek ustawiony pomyślnie!\n";
+                    board.show_board(false);  
+                } else {
+                    cout << "Nie udało się ustawić statku. Spróbuj ponownie.\n";
+                }
             } else {
-                cout << "Nie udało sie ustawic statku. Sprobuj ponownie.\n";
+                // Dla pozostałych statków pytamy o orientację
+                cout << "Ustaw statek o dlugosci " << ships[i] << " (wpisz wspolrzedne x, y oraz orientacje POZIOMO(H)/PIONOWO(V) (np. 4 5 V): ";
+                cin >> x >> y >> ORIENTATION;
+
+                if (board.set_ship(x, y, ships[i], ORIENTATION)) {
+                    set = true;
+                    cout << "Statek ustawiony pomyślnie!\n";
+                    board.show_board(false);  
+                } else {
+                    cout << "Nie udało się ustawić statku. Spróbuj ponownie.\n";
+                }
             }
         }
     }
 }
-
 bool Player::shot_opponent(Board& opponent_board, int x, int y) {
     bool hit = opponent_board.shot(x, y);
     // Aktualizuj planszę strzałów
